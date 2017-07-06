@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="56dp"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:background="@drawable/background"
+        android:isScrollContainer="false"
+        android:fitsSystemWindows="true"
+        tools:context=".activities.SignupActivity">
+
+    <!--  Full Name Label -->
+    <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/white"
+            app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
+        <android.support.design.widget.TextInputEditText
+                android:id="@+id/input_FullName"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:inputType="textCapWords"
+                  android:textColor="@color/white"
+                  android:maxLength="50"
+                  android:hint="@string/hint_FullName"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <!--  Birth Date Label -->
+    <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/white"
+            app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
+        <android.support.design.widget.TextInputEditText
+                android:id="@+id/input_BirthDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:textColor="@color/white"
+                android:focusable="false"
+                android:hint="@string/hint_BirthDate"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <!--  ID Label -->
+    <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/white"
+            app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
+        <android.support.design.widget.TextInputEditText
+                android:id="@+id/input_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:inputType="number"
+                android:maxLength="10"
+                android:hint="@string/hint_ID"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <!--  VIP table preferences Label -->
+    <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/white"
+            app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
+        <android.support.design.widget.TextInputEditText
+                android:id="@+id/input_VIPPref"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapWords"
+                android:textColor="@color/white"
+                android:maxLength="50"
+                android:hint="@string/hint_VIPPref"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <!-- Email Label -->
+    <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/white"
+            app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
+        <android.support.design.widget.TextInputEditText
+                android:id="@+id/input_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/white"
+                android:maxLength="100"
+                android:hint="@string/hint_email" />
+    </android.support.design.widget.TextInputLayout>
+
+    <!-- Password Label -->
+    <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/white"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/colorAccent"
+            app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
+        <android.support.design.widget.TextInputEditText
+                android:id="@+id/input_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:textColor="@color/white"
+                android:maxLength="50"
+                android:hint="@string/hint_password" />
+    </android.support.design.widget.TextInputLayout>
+
+    <!-- Register Button -->
+    <ImageButton
+            android:id="@+id/img_btn_SignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="112dp"
+            android:background="@null"
+            android:contentDescription="@string/btn_register"
+            android:src="@drawable/register" />
+
+    <!-- login Link -->
+    <TextView
+            android:id="@+id/link_login"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/login_lnk"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textSize="16sp"/>
+
+</LinearLayout>

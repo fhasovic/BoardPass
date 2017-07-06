@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/item1"
+          app:showAsAction="always"
+          android:icon="@drawable/icon_add"
+          android:title="Add Event"/>
+    <item android:id="@+id/item2"
+          app:showAsAction="always"
+          android:icon="@drawable/icon_edit"
+          android:title="Update Event"/>
+    <item android:id="@+id/item3"
+          app:showAsAction="always"
+          android:icon="@drawable/icon_delete"
+          android:title="Delete Event"/>
+</menu>
