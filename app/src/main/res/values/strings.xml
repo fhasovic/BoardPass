@@ -27,4 +27,8 @@
     <string name="image">Thumbnail</string>
     <string name="title">Title</string>
     <string name="place">Place</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="google_maps_key" translatable="false" templateMergeStrategy="preserve">AIzaSyC-ZlIKdpLNGfNdWib45Q7lmCvxophvrqo</string>
+    <string name="hint_Currency">Price Currency</string>
+    <string name="hint_PriceCurrencyDropdownn">Select Currency</string>
 </resources>

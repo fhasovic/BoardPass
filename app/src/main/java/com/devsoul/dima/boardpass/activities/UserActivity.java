@@ -109,7 +109,7 @@ public class UserActivity extends AppCompatActivity
         switch (item.getItemId())
         {
             case R.id.item1:
-                Toast.makeText(getApplicationContext(),"Add event selected",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"Add event selected",Toast.LENGTH_SHORT).show();
                 // Go to add event activity
                 Intent intent = new Intent(UserActivity.this, AddEventActivity.class);
                 startActivity(intent);
