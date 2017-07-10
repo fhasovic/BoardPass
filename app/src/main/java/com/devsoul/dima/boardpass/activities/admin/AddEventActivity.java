@@ -14,8 +14,15 @@ import android.view.WindowManager;
 import android.widget.*;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.devsoul.dima.boardpass.R;
 import com.devsoul.dima.boardpass.activities.UserActivity;
+import com.devsoul.dima.boardpass.app.AppConfig;
+import com.devsoul.dima.boardpass.app.AppController;
 import com.devsoul.dima.boardpass.helper.SQLiteHandler;
 import com.devsoul.dima.boardpass.model.MyEvent;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -24,12 +31,12 @@ import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
 import com.squareup.picasso.Picasso;
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.*;
 
 /**
  * The Add Event Activity is for the admin to add new event.
@@ -293,7 +300,7 @@ public class AddEventActivity extends Activity {
             return;
         }
 
-        //registerEvent();
+        registerEvent();
     }
 
     /**
@@ -434,19 +441,18 @@ public class AddEventActivity extends Activity {
 
     /**
      * Function to store event in MySQL database,
-     * will post all params to register url
+     * will post all params to server url
      */
-    /*
     private void registerEvent()
     {
         // Tag used to cancel the request
         String tag_string_req = "register_request";
 
-        pDialog.setMessage("Creating Account ...");
+        pDialog.setMessage("Creating new event ...");
         showDialog();
 
         // Making the volley http request
-        StringRequest strReq = new StringRequest(Request.Method.POST, AppConfig.REGISTER_URL, new Response.Listener<String>()
+        StringRequest strReq = new StringRequest(Request.Method.POST, AppConfig.SERVER_URL, new Response.Listener<String>()
         {
             @Override
             public void onResponse(String response)
@@ -462,6 +468,7 @@ public class AddEventActivity extends Activity {
                     // Check for error node in json
                     if (!error)
                     {
+                        /*
                         // Parent user successfully stored in MySQL
                         // Now store the parent user in SQLite
                         JSONObject user = jObj.getJSONObject("user");
@@ -499,12 +506,13 @@ public class AddEventActivity extends Activity {
                         Intent intent = new Intent(SignupParentGanActivity.this, UserActivity.class);
                         startActivity(intent);
                         finish();
+                        */
                     }
                     else
                     {
                         // Error occurred in registration. Get the error message
                         String errorMsg = jObj.getString("error_msg");
-                        onSignupFailed(errorMsg);
+                        ToastMessage(errorMsg);
                     }
                 }
                 catch (JSONException e)
@@ -518,7 +526,7 @@ public class AddEventActivity extends Activity {
             public void onErrorResponse(VolleyError error)
             {
                 Log.e(TAG, "Registration Error: " + error.getMessage());
-                onSignupFailed(error.getMessage());
+                ToastMessage(error.getMessage());
                 hideDialog();
             }
         })
@@ -528,23 +536,18 @@ public class AddEventActivity extends Activity {
             {
                 // Posting parameters to register url
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("tag", "register_parent");
-                params.put("ID", parent.GetID());
-                params.put("First_Name", parent.GetFirstName());
-                params.put("Last_Name", parent.GetLastName());
-                params.put("Address", parent.GetAddress());
-                params.put("Phone", parent.GetPhone());
-
-                params.put("Kid_Name", child.GetName());
-                params.put("Kid_BirthDate", child.GetBirthDate());
+                params.put("tag", "add_event");
+                params.put("event_name", my_event.getEvent_Name());
+                params.put("event_date", my_event.getEvent_Date());
+                params.put("event_time", my_event.getEvent_Time());
+                params.put("Address", my_event.getAddress());
+                params.put("place_name", my_event.getPlace_Name());
+                params.put("price", my_event.getPrice());
+                /*
                 //Converting Bitmap to String
-                String image = bmpHandler.getStringImage(bmpHandler.decodeSampledBitmapFromStream(Uri.parse(child.GetPicture()), 300, 300));
-                params.put("Kid_Picture", image);
-                params.put("KinderGan_Name", Gan.GetName());
-                params.put("Kid_Class", child.GetClass());
-                params.put("Email", parent.GetEmail());
-                params.put("Password", parent.GetPassword());
-
+                String image = bmpHandler.getStringImage(bmpHandler.decodeSampledBitmapFromStream(Uri.parse(my_event.getPicture()), 300, 300));
+                params.put("picture", image);
+                */
                 return params;
             }
         };
@@ -558,7 +561,6 @@ public class AddEventActivity extends Activity {
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
-*/
 
     /**
      * Show the progress dialog
